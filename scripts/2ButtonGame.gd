@@ -8,8 +8,6 @@ var camera_pos = Vector2()
 const camera_offset = -100
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	get_node("JetpackPlayer").connect("game_over", self, "handle_game_over")
 	change_labels()
 	set_process(true)

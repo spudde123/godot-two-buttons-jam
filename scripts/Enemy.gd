@@ -11,6 +11,11 @@ var since_last_dir_change = 0
 var dir_change_interval = 2
 const max_dir_change_interval = 3
 
+var root
+
+func _enter_tree():
+	root = get_tree().get_root().get_children().back()
+
 func _ready():
 	set_process(true)
 	
@@ -37,5 +42,5 @@ func try_to_shoot():
 	var offset = Vector2(70, 0)
 	var cannon_rot = PI + get_node("Cannon").get_rot()
 	bullet.initialize(get_global_pos() + offset.rotated(cannon_rot), cannon_rot)
-	get_tree().get_root().get_node("2ButtonGame/ShortLived").add_child(bullet)
+	root.add_child(bullet)
 	since_last_fired = 0

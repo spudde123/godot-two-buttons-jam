@@ -57,8 +57,6 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ShortLived" type="Node2D" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 anchor_mode = 0

@@ -2,10 +2,14 @@ extends KinematicBody2D
 
 var direction = Vector2(1, 0)
 var speed = 300
-var explosion_scene
+var explosion_scene = preload("res://scenes/Explosion.tscn")
+
+var root
+
+func _enter_tree():
+	root = get_tree().get_root().get_children().back()
 
 func _ready():
-	explosion_scene = preload("res://scenes/Explosion.tscn")
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
@@ -24,7 +28,7 @@ func initialize(pos, angle):
 func explode():
 	var explosion = explosion_scene.instance()
 	explosion.set_pos(get_pos())
-	get_tree().get_root().add_child(explosion)
+	root.add_child(explosion)
 
 func on_bullet_hit():
 	queue_free()

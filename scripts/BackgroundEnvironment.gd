@@ -37,7 +37,8 @@ func fill_background_portions():
 
 func add_new_portion(start_x, width):
 	var portion = portion_scene.instance()
-	portion.initialize(width, current_top_height, current_bot_height)
+	var destructible_allowed = get_child_count() > 0
+	portion.initialize(width, current_top_height, current_bot_height, destructible_allowed)
 	portion.set_pos(Vector2(start_x, 0))
 	add_child(portion)
 	current_bot_height = portion.end_bot_height

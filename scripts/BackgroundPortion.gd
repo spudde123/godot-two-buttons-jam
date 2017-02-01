@@ -14,17 +14,20 @@ var destructible_env = preload("res://scenes/DestructibleEnvironment.tscn")
 const tint_color = Color(0.7, 0.7, 0.7)
 var max_top_height = min_height
 var max_bot_height = min_height
+var destructible_allowed = true
 
 func _ready():
 	max_part_height = get_viewport_rect().size.height * 0.4
 	create_top_part(width)
 	create_bot_part(width)
-	create_destructible_part(width)
+	if destructible_allowed:
+		create_destructible_part(width)
 	
-func initialize(w, start_top_height, start_bot_height):
+func initialize(w, start_top_height, start_bot_height, destructible):
 	width = w
 	st_top_height = start_top_height
 	st_bot_height = start_bot_height
+	destructible_allowed = destructible
 	
 func create_physics_body(polygon):
 	var convex_polygon = ConvexPolygonShape2D.new()
@@ -72,9 +75,7 @@ func create_top_part(part_width):
 	
 func create_bot_part(part_width):
 	var vp_height = get_viewport_rect().size.height
-	#var w1 = rand_range(0, part_width * 0.1)
 	var w1 = rand_range(0, part_width * 0.4)
-	#var w2 = rand_range(part_width * 0.6, part_width*0.8)
 	var w2 = part_width - w1
 	var start_height = st_bot_height
 	max_bot_height = rand_range(start_height, max_part_height)
